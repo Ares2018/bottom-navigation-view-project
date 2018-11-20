@@ -12,12 +12,16 @@
         android:id="@id/bottom_navigation_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navigation"/>
+        android:layout_above="@+id/bottom_navigation" />
 
     <com.daily.bottom.navigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="@color/bottom_navigation_background_color"
+        app:itemDrawablePadding="4dp"
+        app:itemTextColor="@color/bottom_navigation_item_title_color"
+        app:itemTextSize="11sp" />
 
 </RelativeLayout>

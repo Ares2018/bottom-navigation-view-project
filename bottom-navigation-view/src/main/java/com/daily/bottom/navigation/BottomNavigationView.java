@@ -1,11 +1,13 @@
 package com.daily.bottom.navigation;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -25,6 +27,10 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
     private BottomNavigationObserver mNavigationObserver;
     private int mIndex = 0;
 
+    private int mItemTextColor;
+    private float mItemTextSize;
+    private int mItemDrawablePadding;
+
     public interface OnItemClickListener {
         void onItemClick(int preIndex, int index);
     }
@@ -39,6 +45,12 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
 
     public BottomNavigationView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
+        final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationView, defStyleAttr, 0);
+        mItemTextColor = a.getColor(R.styleable.BottomNavigationView_itemTextColor, getResources().getColor(R.color.bottom_navigation_item_title_color));
+        mItemTextSize = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemTextSize, 10);
+        mItemDrawablePadding = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemDrawablePadding, 4);
+        a.recycle();
         initUI(context, attrs, defStyleAttr);
     }
 
@@ -86,7 +98,12 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
     private RadioButton createTab(int i) {
         TabItem item = mAdapter.getTabItem(i);
         RadioButton radioButton = (RadioButton) LayoutInflater.from(getContext()).inflate(R.layout.bottom_navigation_item, mRadioGroup, false);
-        UiModeUtils.applySave(radioButton, Attr.NAME_DRAWABLE_TOP,item.icon);
+
+        radioButton.setTextColor(mItemTextColor);
+        radioButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, mItemTextSize);
+        radioButton.setCompoundDrawablePadding(mItemDrawablePadding);
+
+        UiModeUtils.applySave(radioButton, Attr.NAME_DRAWABLE_TOP, item.icon);
         radioButton.setText(item.title);
         radioButton.setId(i);
         return radioButton;
@@ -98,7 +115,6 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
     }
 
 
-
     public void notifyDataChange() {
         if (mRadioGroup.getChildCount() != mAdapter.getCount()) {
             throw new IllegalStateException("不能修改Tab个数");
@@ -108,7 +124,7 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
             TabItem item = mAdapter.getTabItem(i);
             RadioButton radioButton = (RadioButton) mRadioGroup.getChildAt(i);
             radioButton.setText(item.title);
-            UiModeUtils.applySave(radioButton,Attr.NAME_DRAWABLE_TOP,item.icon);
+            UiModeUtils.applySave(radioButton, Attr.NAME_DRAWABLE_TOP, item.icon);
         }
     }
 
@@ -138,7 +154,7 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
         if (fragment.isAdded()) {
             transaction.show(fragment);
         } else {
-            transaction.add(R.id.bottom_navigation_content, fragment,mAdapter.getTabItem(index).className);
+            transaction.add(R.id.bottom_navigation_content, fragment, mAdapter.getTabItem(index).className);
         }
         transaction.commitAllowingStateLoss();
     }
