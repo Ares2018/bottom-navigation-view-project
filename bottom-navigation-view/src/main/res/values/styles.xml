@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DailyBottomNavigationView">
+        <item name="android:background">@color/bottom_navigation_background_color</item>
+        <item name="bottomNavigationViewItemStyle">@style/DailyBottomNavigationViewItemStyle</item>
+    </style>
+
+    <style name="DailyBottomNavigationViewItemStyle">
+        <item name="android:textColor">@color/bottom_navigation_item_title_color</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:drawablePadding">4dp</item>
+    </style>
+</resources>
