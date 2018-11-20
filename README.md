@@ -4,30 +4,20 @@
 1. App Style中添加自定义的Style
 
 	```
-	  <!-- Base application theme. -->
-	    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-	        <!-- Customize your theme here. -->
-	        <item name="colorPrimary">@color/colorPrimary</item>
-	        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-	        <item name="colorAccent">@color/colorAccent</item>
-	        <item name="bottomNavigationViewStyle">@style/BottomNavigationViewStyle</item>
-	        <item name="bottomNavigationViewItemStyle">@style/BottomNavigationViewItemStyle</item>
-	    </style>
-	```
-2. 自定义Style
-
+	 <com.daily.bottom.navigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bottom_navigation_background_color"
+        app:itemDrawablePadding="4dp"
+        app:itemTextColor="@color/bottom_navigation_item_title_color"
+        app:itemTextSize="11sp" />
 	```
 	
-	    <style name="BottomNavigationViewStyle" parent="@style/DailyBottomNavigationView" >
-	        <item name="android:background">#dddddd</item>
-	    </style>
-	
-	    <style name="BottomNavigationViewItemStyle" parent="@style/DailyBottomNavigationViewItemStyle" >
-	        <item name="android:textColor">@color/bottom_navigation_item_title_color</item>
-	        <item name="android:textSize">11sp</item>
-	        <item name="android:drawablePadding">4dp</item>
-	    </style>
-	```
+	app:itemDrawablePadding 图片和文字的间距  
+   app:itemTextColor 字体颜色  
+   app:itemTextSize 字体大小  
 	
 3. 添加TAB
 
