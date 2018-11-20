@@ -6,8 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="bottomNavigationViewItemStyle">@style/BottomNavigationViewItemStyle</item>
         <item name="bottomNavigationViewStyle">@style/BottomNavigationViewStyle</item>
+        <item name="bottomNavigationViewItemStyle">@style/BottomNavigationViewItemStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -18,13 +18,15 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-    <style name="BottomNavigationViewItemStyle">
-        <item name="android:textSize">10sp</item>
-        <item name="android:drawablePadding">6dp</item>
-        <item name="android:textColor">#484848</item>
+
+    <style name="BottomNavigationViewStyle" parent="@style/DailyBottomNavigationView" >
+        <item name="android:background">#dddddd</item>
     </style>
 
-    <style name="BottomNavigationViewStyle" parent="@style/DailyBottomNavigationView">
+    <style name="BottomNavigationViewItemStyle" parent="@style/DailyBottomNavigationViewItemStyle" >
+        <item name="android:textColor">@color/bottom_navigation_item_title_color</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:drawablePadding">4dp</item>
     </style>
 
 
