@@ -1,6 +1,7 @@
 package com.daily.bottom.navigation;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -27,8 +28,8 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
     private BottomNavigationObserver mNavigationObserver;
     private int mIndex = 0;
 
-    private int mItemTextColor;
-    private float mItemTextSize;
+    private ColorStateList mItemTitleColorStateList;
+    private float mItemTitleSize;
     private int mItemDrawablePadding;
 
     public interface OnItemClickListener {
@@ -47,8 +48,8 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
         super(context, attrs, defStyleAttr);
 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationView, defStyleAttr, 0);
-        mItemTextColor = a.getColor(R.styleable.BottomNavigationView_itemTitleColor, getResources().getColor(R.color.bottom_navigation_item_title_color));
-        mItemTextSize = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemTitleSize, 10);
+        mItemTitleColorStateList = a.getColorStateList(R.styleable.BottomNavigationView_itemTitleColor);
+        mItemTitleSize = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemTitleSize, 10);
         mItemDrawablePadding = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemDrawablePadding, 4);
         a.recycle();
         initUI(context, attrs, defStyleAttr);
@@ -99,8 +100,8 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
         TabItem item = mAdapter.getTabItem(i);
         RadioButton radioButton = (RadioButton) LayoutInflater.from(getContext()).inflate(R.layout.bottom_navigation_item, mRadioGroup, false);
 
-        radioButton.setTextColor(mItemTextColor);
-        radioButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, mItemTextSize);
+        radioButton.setTextColor(mItemTitleColorStateList);
+        radioButton.setTextSize(TypedValue.COMPLEX_UNIT_PX, mItemTitleSize);
         radioButton.setCompoundDrawablePadding(mItemDrawablePadding);
 
         UiModeUtils.applySave(radioButton, Attr.NAME_DRAWABLE_TOP, item.icon);
