@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="BottomNavigationView">
-        <attr name="itemTextColor" format="color|reference" />
-        <attr name="itemTextSize" format="dimension"/>
+        <attr name="itemTitleColor" format="color|reference" />
+        <attr name="itemTitleSize" format="dimension"/>
         <attr name="itemDrawablePadding" format="dimension"/>
     </declare-styleable>
 </resources>

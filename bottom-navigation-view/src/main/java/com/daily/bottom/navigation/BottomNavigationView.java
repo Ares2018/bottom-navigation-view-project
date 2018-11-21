@@ -47,8 +47,8 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
         super(context, attrs, defStyleAttr);
 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BottomNavigationView, defStyleAttr, 0);
-        mItemTextColor = a.getColor(R.styleable.BottomNavigationView_itemTextColor, getResources().getColor(R.color.bottom_navigation_item_title_color));
-        mItemTextSize = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemTextSize, 10);
+        mItemTextColor = a.getColor(R.styleable.BottomNavigationView_itemTitleColor, getResources().getColor(R.color.bottom_navigation_item_title_color));
+        mItemTextSize = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemTitleSize, 10);
         mItemDrawablePadding = a.getDimensionPixelOffset(R.styleable.BottomNavigationView_itemDrawablePadding, 4);
         a.recycle();
         initUI(context, attrs, defStyleAttr);

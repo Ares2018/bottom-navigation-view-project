@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/bottom_navigation_background_color"
         app:itemDrawablePadding="4dp"
-        app:itemTextColor="@color/bottom_navigation_item_title_color"
-        app:itemTextSize="11sp" />
+        app:itemTitleColor="@color/bottom_navigation_item_title_color"
+        app:itemTitleSize="11sp" />
 
 </RelativeLayout>
