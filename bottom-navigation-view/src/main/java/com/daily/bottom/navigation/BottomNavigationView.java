@@ -142,22 +142,36 @@ public class BottomNavigationView extends FrameLayout implements RadioGroup.OnCh
         mIndex = index;
     }
 
-    private void hideTabContent(int index) {
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        Fragment fragment = mAdapter.getItem(index);
-        transaction.hide(fragment);
-        transaction.commitAllowingStateLoss();
+    private void hideTabContent(final int index) {
+        //使用post的原因:Activity重启后Fragment被重新创建，切换Fragment时页面无法刷新。隐藏的Fragment仍能看到。
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                Fragment fragment = mAdapter.getItem(index);
+                transaction.hide(fragment);
+                transaction.commitAllowingStateLoss();
+            }
+        }, 0);
     }
 
-    private void addTabContent(int index) {
-        FragmentTransaction transaction = mFragmentManager.beginTransaction();
-        Fragment fragment = mAdapter.getItem(index);
-        if (fragment.isAdded()) {
-            transaction.show(fragment);
-        } else {
-            transaction.add(R.id.bottom_navigation_content, fragment, mAdapter.getTabItem(index).className);
-        }
-        transaction.commitAllowingStateLoss();
+    private void addTabContent(final int index) {
+        //使用post的原因:Activity重启后Fragment被重新创建，切换Fragment时页面无法刷新。隐藏的Fragment仍能看到。
+        postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                FragmentTransaction transaction = mFragmentManager.beginTransaction();
+                Fragment fragment = mAdapter.getItem(index);
+                if (fragment.isAdded()) {
+                    transaction.show(fragment);
+                } else {
+                    transaction.add(R.id.bottom_navigation_content, fragment, mAdapter.getTabItem(index).className);
+                }
+                transaction.commitAllowingStateLoss();
+            }
+        }, 0);
+
+
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
